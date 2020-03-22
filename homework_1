@@ -1,0 +1,49 @@
+% concatenate two lists
+% concatenate( +List1, +List2, -result)
+% Principle of induction 
+%   1) P(n0)
+%   2) P(n-1) -> P(n)
+%    P(n) :- P(n-1).
+
+/*
+Question 1:
+Would it be possible using the concatenated predicate to get any 
+pair of consecutive numbers from a list? If so, 
+How would you have to use the concatenated predicate to get it?
+pairs( +List1, -paris)
+*/
+
+
+split_pairs([X,Y],[[X,Y]]).
+split_pairs([X,Y|Tail], [[X,Y]|Rest]) :- split_pairs(Tail, Rest).
+
+
+/*
+Question 2:
+It is possible, if you give follwoing input to Prolog.
+
+invert(R,[1,2,3,4,5,6]).
+R = [6, 5, 4, 3, 2, 1] 
+
+So you can invert the predicate here 
+*/
+
+
+/*
+Question 3:
+It would be able to indicate which characteristic makes a predicate not reversible.
+*/
+
+
+/*
+Question 4: 
+Use of concat. and invert?
+Use invert with the concat predicate in the following code.
+*/
+
+concat([], List2, List2).
+concat([Head|Tail], List2, [Head|R]) :- concat(Tail, List2, R).
+
+invert([], []).
+invert([Head|Tail], R2):- invert(Tail, R1), concat(R1, [Head], R2).
+
